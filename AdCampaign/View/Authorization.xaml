@@ -1,0 +1,79 @@
+﻿<Page x:Class="AdCampaign.View.Authorization"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="504.108" d:DesignWidth="580.715"
+	Title="Authorization">
+    <Page.Resources>
+        <ResourceDictionary Source="CampaignCreatorResources.xaml" />
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="17*"/>
+            <RowDefinition Height="67*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="119*"/>
+            <ColumnDefinition Width="338*"/>
+            <ColumnDefinition Width="124*"/>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="grAuthorization" Grid.Column="1" Grid.Row="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+                <RowDefinition Height="48"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="45"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Логин" Style="{StaticResource LabelStyleA}" Height="16" Margin="10,14,0,15" Width="34" />
+                <TextBlock Text="Пароль" Grid.Row="1" Style="{StaticResource LabelStyleA}" Height="16" Margin="10,15,0,14" Width="41"/>
+                <TextBox Grid.Column="1" Text="{Binding CurrentItem.UserName,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource InfoStyle}"/>
+                <PasswordBox x:Name="pbPassword" Grid.Column="1"  Grid.Row="1" Style="{StaticResource InfoStyle}" >
+                    <PasswordBox.InputBindings>
+                        <KeyBinding Key="Enter" Command="{Binding EnterCommand}"/>
+                    </PasswordBox.InputBindings>
+                </PasswordBox>
+            </Grid>
+            <Expander Header="Настройки"  Grid.Row="1" >
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="45"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="127*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock  Text="Сервер" Style="{StaticResource LabelStyleA}"/>
+                    <ComboBox Grid.Column="1"  IsEditable="True" ItemsSource="{Binding Items}" DisplayMemberPath="ConnectionName" SelectedItem="{Binding CurrentItem}" Style="{StaticResource InfoStyle}" />
+                </Grid>
+            </Expander>
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="158"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Command="{Binding EnterCommand}" Grid.Column="1" Style="{StaticResource MainButtonStyle}" >
+                    <DockPanel Width="133">
+                        <Image Source="pack://application:,,,/Images/Key-icon.png" DockPanel.Dock="Left" />
+                        <TextBlock Text="Войти" Width="50" Height="18"/>
+                    </DockPanel>
+                </Button>
+            </Grid>
+        </Grid>
+
+    </Grid>
+</Page>

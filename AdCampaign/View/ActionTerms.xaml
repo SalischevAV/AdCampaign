@@ -1,0 +1,62 @@
+﻿<Page x:Class="AdCampaign.View.ActionTerms"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:vm="clr-namespace:AdCampaign.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="433" d:DesignWidth="723"
+	  Title="ActionTerms">
+    <Page.Resources>
+        <ResourceDictionary Source="CampaignCreatorResources.xaml" />
+    </Page.Resources>
+    <Grid x:Name="grActionTerms">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto" MinHeight="59"/>
+            <RowDefinition Height="48"/>
+        </Grid.RowDefinitions>
+        <vm:CampaignRedactor Grid.Row="1" />
+
+        <Grid Grid.Row="3" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="158"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="158"/>
+            </Grid.ColumnDefinitions>
+            <Button Click="NavigateBackToSelectCards"  Style="{StaticResource MainButtonStyle}"
+        		Command="{Binding CancelCampaignCreation}" >
+                <DockPanel Width="133">
+                    <Image Source="pack://application:,,,/Images/previos-sail.png" DockPanel.Dock="Left" />
+                    <TextBlock Text="Назад" Width="49" Height="18"/>
+                </DockPanel>
+            </Button>
+            <Button Command="{Binding ConfirmCampaignCreation}" Grid.Column="2" Style="{StaticResource MainButtonStyle}">
+                <DockPanel Width="128">
+                    <Image Source="pack://application:,,,/Images/next-sail.png" DockPanel.Dock="Right" />
+                    <TextBlock Text="Продолжить" Width="72" Height="18"/>
+                </DockPanel>
+            </Button>
+        </Grid>
+        <StackPanel Grid.Row="2">
+            <WrapPanel Margin="20,0">
+                <TextBlock Text="Кол-во карт: " FontWeight="Bold" />
+                <TextBlock TextWrapping="Wrap" Text="{Binding Count}" Margin="10,0,0,0" FontWeight="Bold" Foreground="#FF0000B2"/>
+            </WrapPanel>
+            <Expander Header="Запрос" Margin="0,10">
+                <StackPanel>
+                    <TextBox TextWrapping="Wrap" Text="{Binding TemporaryQueryString}" IsReadOnly="True"/>
+                    <Button Name="btnExportCards"  Content="Экспорт карт и телефонов" Background="White" Click="btnExportCards_Click" />
+                    <Button Name="btnExportPhones" Content="Экспорт телефонов" Background="White" Click="btnExportCards_Click" />
+                </StackPanel>
+            </Expander>
+        </StackPanel>
+        <Label Style="{StaticResource HeaderStyle}" Height="Auto">
+            <TextBlock Text="Условия акции"/>
+        </Label>
+    </Grid>
+</Page>

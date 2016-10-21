@@ -1,0 +1,65 @@
+﻿<Page x:Class="AdCampaign.View.SelectCards"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="332" d:DesignWidth="455" Title="SelectCards"
+      xmlns:ListControls="clr-namespace:AdCampaign.ListControls"
+      xmlns:vm="clr-namespace:AdCampaign.View" KeepAlive="True">
+    <Page.Resources>
+        <ResourceDictionary Source="CampaignCreatorResources.xaml" />
+    </Page.Resources>
+
+    <Grid x:Name="grCampaign" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition/>
+            <RowDefinition Height="48"/>
+        </Grid.RowDefinitions>
+        <ComboBox x:Name="cbTemplates"  IsSynchronizedWithCurrentItem="True" IsEditable="True" Style="{StaticResource InfoStyle}"
+                  SelectedValuePath="TemplateId" DisplayMemberPath="TemplateName" ItemsSource="{Binding Templates.TemplatesList}" 
+                  SelectedIndex="{Binding Templates.CurrentTemplate}" Grid.Row="1" ToolTip="Выбор шаблона"/>
+        <ListBox Grid.Row="2" ItemsSource="{Binding ParametersView}" Style="{StaticResource InfoStyle}">
+            <ListBox.Resources>
+                <DataTemplate x:Key="InputValueDataTemplate">
+                    <ListControls:InputValue Margin="10"/>
+                </DataTemplate>
+                <DataTemplate x:Key="CheckListDataTemplate">
+                    <ListControls:CheckList Margin="10"/>
+                </DataTemplate>
+                <DataTemplate x:Key="InputRangeDataTemplate">
+                    <ListControls:InputRangeValues Margin="10"/>
+                </DataTemplate>
+                <DataTemplate x:Key="InputRangeDataDateTemplate">
+                    <ListControls:InputRangeDateValues Margin="10"/>
+                </DataTemplate>
+            </ListBox.Resources>
+            <ListBox.ItemTemplateSelector>
+                <vm:ViewTemplateSelector InputValueDataTemplate="{StaticResource InputValueDataTemplate}" 
+                                         CheckListDataTemplate="{StaticResource CheckListDataTemplate}" 
+                                         InputRangeDataTemplate="{StaticResource InputRangeDataTemplate}"
+                                         InputRangeDataDateTemplate="{StaticResource InputRangeDataDateTemplate}"/>
+            </ListBox.ItemTemplateSelector>
+        </ListBox>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="158"/>
+            </Grid.ColumnDefinitions>
+            <Button Style="{StaticResource MainButtonStyle}"
+        		Click="NavigateToActionTerms" Command="{Binding NavigateButtonCommand}" Grid.Column="1" >
+                <DockPanel Width="130">
+                    <Image Source="pack://application:,,,/Images/next-sail.png" DockPanel.Dock="Right" />
+                    <TextBlock Text="Продолжить" Width="76" Height="18"/>
+                </DockPanel>
+            </Button>
+        </Grid>
+        <Label Style="{StaticResource HeaderStyle}">
+            <TextBlock>
+                С помощью построителя запроса, выберите карты, участвующие в акции
+            </TextBlock>
+        </Label>
+    </Grid>
+</Page>

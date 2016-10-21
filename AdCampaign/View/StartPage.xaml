@@ -1,0 +1,53 @@
+﻿<Page x:Class="AdCampaign.View.StartPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="392" d:DesignWidth="805"
+	Title="StartPage">
+    <Page.Resources>
+        <Style x:Key="StartPageButtonStyle">
+            <Setter Property="Control.Margin"  Value="5"/>
+            <Setter Property="Control.Height"  Value="50"/>
+            <Setter Property="Control.Background"  Value="White"/>
+        </Style>
+        <Style x:Key="StartPageTextBlockStyle">
+            <Setter Property="FrameworkElement.VerticalAlignment" Value="Center" />
+            <Setter Property="FrameworkElement.Margin" Value="10" />
+            <Setter Property="FrameworkElement.Width" Value="150" />
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="44"/>
+            <RowDefinition/>
+            <RowDefinition Height="42"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="51"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="57"/>
+        </Grid.ColumnDefinitions>
+        <WrapPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1">
+            <Button Click="GoToSelectCards" Style="{StaticResource StartPageButtonStyle}">
+                <DockPanel>
+                    <Image Source="pack://application:,,,/Images/Plus-icon.png" DockPanel.Dock="Left"/>
+                    <TextBlock Text="Создать новую кампанию" Style="{StaticResource StartPageTextBlockStyle}"/>
+                </DockPanel>
+            </Button>
+            <Button Click="GoToCampaignEditor" Style="{StaticResource StartPageButtonStyle}" >
+                <DockPanel>
+                    <Image Source="pack://application:,,,/Images/Gears-icon.png" DockPanel.Dock="Left"/>
+                    <TextBlock Text="Редактор кампаний" Style="{StaticResource StartPageTextBlockStyle}"/>
+                </DockPanel>
+            </Button>
+            <Button Click="GoToCampaignResult" Style="{StaticResource StartPageButtonStyle}">
+                <DockPanel>
+                    <Image Source="pack://application:,,,/Images/Chart-Pie-icon.png"/>
+                    <TextBlock Text="Результаты кампаний" Style="{StaticResource StartPageTextBlockStyle}"/>
+                </DockPanel>
+            </Button>
+        </WrapPanel>
+    </Grid>
+</Page>

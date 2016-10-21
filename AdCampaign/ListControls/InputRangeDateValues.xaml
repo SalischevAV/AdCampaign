@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="AdCampaign.ListControls.InputRangeDateValues"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="54" d:DesignWidth="209">
+    <StackPanel >
+        <TextBlock Text="{Binding ParameterName}"/>
+        <StackPanel Orientation="Horizontal">
+            <DatePicker Language="Ru-ru"  Width="100" Text="{Binding Value1, Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+            <DatePicker Language="Ru-ru" Width="100" Text="{Binding Value2, Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+    </StackPanel>
+</UserControl>
